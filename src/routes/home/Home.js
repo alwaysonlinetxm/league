@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import classnames from 'classnames';
 import * as Actions from '../../actions/HomeActions';
 import * as DataTypes from '../../constants/DataTypes';
 import Util from '../../libs/util';
 import Style from './Home.scss';
+
 class Home extends Component {
   toDemaxiya = this.toDemaxiya.bind(this)
 
@@ -21,7 +23,7 @@ class Home extends Component {
     const { list } = this.props;
     return (
       <div className={ Style.home }>
-        <p onClick={ this.toDemaxiya }>Home</p>
+        <p onClick={ this.toDemaxiya } className={ classnames(Style.border, Style.color) }>Home</p>
         { list.map((node, i) => <p key={ i }>{ node.name }</p>) }
       </div>
     );
