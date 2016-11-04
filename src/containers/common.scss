@@ -1,0 +1,76 @@
+%clearfix {
+    *zoom: 1;
+
+    &:after,
+    &:before {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+        overflow: hidden;
+    }
+}
+
+@mixin icon-arrow($size, $deg, $border, $color) {
+	position: relative;
+	z-index: 1;
+	display: inline-block;
+	width: $size;
+	height: $size;
+	overflow: hidden;
+	-webkit-transform: rotateZ($deg);
+	transform: rotateZ($deg);
+
+	&:before,
+	&:after {
+		position: absolute;
+		z-index: 1;
+		left: 0;
+		bottom: 0;
+		content: " ";
+		background-color: $color;
+	}
+
+	&:before {
+		width: $border;
+		height: 100%;
+	}
+
+	&:after {
+		width: 100%;
+		height: $border;
+	}
+}
+
+@mixin mediate($height) {
+	height: $height;
+	line-height: $height;
+}
+
+@mixin gradient($start, $end) {
+    background-color: $start;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(100%, $start), color-stop(0%, $end));
+    background: -webkit-linear-gradient(top, $start 0%, $end 100%);
+}
+
+@mixin flex($orient: horizontal, $pack: center, $align: stretch) {
+    display: -webkit-box;
+    -webkit-box-orient: $orient;
+    -webkit-box-pack: $pack;
+    -webkit-box-align: $align;
+}
+
+%ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin ellipsis-multi($n: 1) {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: $n;
+    -webkit-box-orient: vertical;
+}

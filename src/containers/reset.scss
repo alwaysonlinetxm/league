@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing:border-box;
+  font-family: Arial,"Microsoft YaHei","微软雅黑",sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul, ol { list-style: none; }
+
+a { text-decoration: none; }
+
+q:before, q:after { content: ''; }
+
+fieldset, img { border: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+hr {
+  border: none;
+  height: 1px;
+}
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html { overflow-y: scroll; }
+
+body {
+  //禁止用户选择元素的内容
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+button{
+  border: none;
+  outline: none;
+}
+
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none;
+}
