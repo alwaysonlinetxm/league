@@ -1,5 +1,6 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
+var px2rem = require('postcss-px2rem');
 var webpack = require('webpack');
 var CleanWebpackPlugin = require('clean-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -111,7 +112,7 @@ module.exports = {
       loader: 'html'
     }]
   },
-  postcss: [autoprefixer({ browsers: [ '> 5%', 'last 2 versions' ] })],
+  postcss: [autoprefixer({ browsers: [ '> 5%', 'last 2 versions' ] }), px2rem({remUnit: 75})],
   eslint: {
     configFile: '.eslintrc',
     emitWarning: false,

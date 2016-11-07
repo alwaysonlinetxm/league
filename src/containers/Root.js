@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions/CommonActions';
 import './reset.scss';
-import './common.scss';
 
 class Root extends Component {
   render() {

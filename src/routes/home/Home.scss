@@ -1,8 +1,11 @@
+@import '../../containers/common.scss';
+
 .home {
-  font-size: 50px;
+  @include font-dpr(20px);
 }
 
 .border {
+  width: 375px;
   border: 1px solid #0f0;
 }
 
