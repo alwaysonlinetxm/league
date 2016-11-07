@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classnames from 'classnames';
+import { getNames } from '../../selectors/HomeSelector';
 import * as Actions from '../../actions/HomeActions';
 import * as DataTypes from '../../constants/DataTypes';
 import Util from '../../libs/util';
@@ -20,11 +21,11 @@ class Home extends Component {
   }
 
   render() {
-    const { list } = this.props;
+    const { names } = this.props;
     return (
       <div className={ Style.home }>
         <p onClick={ this.toDemaxiya } className={ classnames(Style.border, Style.color) }>Home</p>
-        { list.map((node, i) => <p key={ i }>{ node.name }</p>) }
+        { names.map((node, i) => <p key={ i }>{ node }</p>) }
       </div>
     );
   }
@@ -33,6 +34,7 @@ class Home extends Component {
 Home.propTypes = {
   list: PropTypes.arrayOf(DataTypes.MEMBER).isRequired,
   total: PropTypes.number.isRequired,
+  names: PropTypes.array.isRequired,
   getMember: PropTypes.func.isRequired
 };
 
@@ -44,7 +46,8 @@ function mapStateToProps(state) {
   const { list, total } = state.home;
   return {
     list: list,
-    total: total
+    total: total,
+    names: getNames(state),
   };
 }
 
