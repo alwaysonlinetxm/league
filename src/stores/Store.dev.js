@@ -8,13 +8,14 @@ const enhancer = compose(
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
+// will cover the initState in reducer
 const initialState = {};
 const store = createStore(createReducer(), initialState, enhancer);
 store.asyncReducers = {};
 
 export function injectAsyncReducer(asyncReducers) {
-    Object.assign(store.asyncReducers, asyncReducers);
-    store.replaceReducer(createReducer(store.asyncReducers));
+  Object.assign(store.asyncReducers, asyncReducers);
+  store.replaceReducer(createReducer(store.asyncReducers));
 }
 
 export default store;
