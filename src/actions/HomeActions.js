@@ -6,4 +6,11 @@ function getMember() {
   };
 }
 
-export { getMember };
+function testSaga(payload) {
+  return {
+    type: ActionTypes.SAGA_TASK,
+    payload
+  }
+}
+
+export { getMember, testSaga };

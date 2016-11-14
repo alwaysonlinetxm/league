@@ -10,9 +10,18 @@ import Style from './Home.scss';
 
 class Home extends Component {
   toDemaxiya = this.toDemaxiya.bind(this)
+  testSaga = this.testSaga.bind(this)
 
   toDemaxiya() {
     this.context.router.push('/demaxiya');
+  }
+
+  testSaga() {
+    Util.log('test saga');
+    this.props.testSaga({
+      name: '嘉文',
+      num: 3
+    });
   }
 
   componentWillMount() {
@@ -24,6 +33,7 @@ class Home extends Component {
     const { names } = this.props;
     return (
       <div className={ Style.home }>
+        <p className={ Style.task } onClick={ this.testSaga }>saga task</p>
         <p onClick={ this.toDemaxiya } className={ classnames(Style.border, Style.color) }>Home</p>
         { names.map((node, i) => <p key={ i }>{ node }</p>) }
       </div>
@@ -35,7 +45,8 @@ Home.propTypes = {
   list: PropTypes.arrayOf(DataTypes.MEMBER).isRequired,
   total: PropTypes.number.isRequired,
   names: PropTypes.array.isRequired,
-  getMember: PropTypes.func.isRequired
+  getMember: PropTypes.func.isRequired,
+  testSaga: PropTypes.func.isRequired
 };
 
 Home.contextTypes = {
