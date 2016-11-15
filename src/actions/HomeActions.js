@@ -1,16 +1,8 @@
+import { createActions } from 'redux-actions';
 import ActionTypes from '../constants/ActionTypes';
 
-function getMember() {
-  return {
-    type: ActionTypes.GET_MEMBER
-  };
-}
-
-function testSaga(payload) {
-  return {
-    type: ActionTypes.SAGA_TASK,
-    payload
-  }
-}
-
-export { getMember, testSaga };
+export default createActions({
+  [ActionTypes.GET_MEMBER]: () => ({}),
+  [ActionTypes.SAGA_TASK]: node => ({ node }),
+  [ActionTypes.SAGA_TASK_REAL]: node => ({ node })
+});

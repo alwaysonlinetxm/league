@@ -1,3 +1,4 @@
+import { handleActions } from 'redux-actions';
 import ActionTypes from '../constants/ActionTypes';
 
 const initState = {
@@ -17,17 +18,7 @@ const data = {
   total: 2
 };
 
-export default (state = initState, action) => {
-  switch (action.type) {
-    case ActionTypes.GET_MEMBER:
-      return data;
-    case ActionTypes.SAGA_TASK:
-      console.log('------ SAGA_TASK ------');
-      return data;
-    case ActionTypes.SAGA_TASK_REAL:
-      console.log('------ SAGA_TASK_REAL ------');
-      return Object.assign({}, state, { list: state.list.concat([action.payload]) });
-    default:
-      return state;
-  }
-};
+export default handleActions({
+  [ActionTypes.GET_MEMBER]: () => data,
+  [ActionTypes.SAGA_TASK_REAL]: (state, action) => Object.assign({}, state, { list: state.list.concat([action.payload.node]) })
+}, initState);

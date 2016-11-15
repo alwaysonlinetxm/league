@@ -3,28 +3,29 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classnames from 'classnames';
 import { getNames } from '../../selectors/HomeSelector';
-import * as Actions from '../../actions/HomeActions';
+import Actions from '../../actions/HomeActions';
 import * as DataTypes from '../../constants/DataTypes';
 import Util from '../../libs/util';
 import Style from './Home.scss';
 
 class Home extends Component {
   toDemaxiya = this.toDemaxiya.bind(this)
-  testSaga = this.testSaga.bind(this)
+  sagaTask = this.sagaTask.bind(this)
 
   toDemaxiya() {
     this.context.router.push('/demaxiya');
   }
 
-  testSaga() {
+  sagaTask() {
     Util.log('test saga');
-    this.props.testSaga({
+    this.props.sagaTask({
       name: '嘉文',
       num: 3
     });
   }
 
   componentWillMount() {
+    console.log(Actions)
     Util.log('will ', 'mount');
     this.props.getMember();
   }
@@ -33,7 +34,7 @@ class Home extends Component {
     const { names } = this.props;
     return (
       <div className={ Style.home }>
-        <p className={ Style.task } onClick={ this.testSaga }>saga task</p>
+        <p className={ Style.task } onClick={ this.sagaTask }>saga task</p>
         <p onClick={ this.toDemaxiya } className={ classnames(Style.border, Style.color) }>Home</p>
         { names.map((node, i) => <p key={ i }>{ node }</p>) }
       </div>
@@ -46,7 +47,7 @@ Home.propTypes = {
   total: PropTypes.number.isRequired,
   names: PropTypes.array.isRequired,
   getMember: PropTypes.func.isRequired,
-  testSaga: PropTypes.func.isRequired
+  sagaTask: PropTypes.func.isRequired
 };
 
 Home.contextTypes = {

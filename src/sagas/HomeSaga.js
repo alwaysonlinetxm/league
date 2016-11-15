@@ -1,5 +1,6 @@
 import { take, call, put } from 'redux-saga/effects';
 import ActionTypes from '../constants/ActionTypes';
+import { sagaTaskReal } from '../actions/HomeActions';
 
 function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,10 +18,7 @@ function* testTask() {
         return response.json();
     }).then(stories => console.log(stories));
 
-    yield put({
-      type: ActionTypes.SAGA_TASK_REAL,
-      payload
-    });
+    yield put(sagaTaskReal(payload.node));
   }
 }
 
