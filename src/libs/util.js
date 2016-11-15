@@ -1,3 +1,5 @@
+import 'isomorphic-fetch';
+
 export default {
 	/**
 	 * 获取TFS完整地址
