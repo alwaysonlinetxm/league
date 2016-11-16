@@ -65,6 +65,7 @@
     "redux-actions": "^0.13.0",
     "redux-logger": "^2.7.4",
     "redux-saga": "^0.12.1",
-    "redux-thunk": "^2.1.0"
+    "redux-thunk": "^2.1.0",
+    "seamless-immutable": "^6.3.0"
   }
 }
