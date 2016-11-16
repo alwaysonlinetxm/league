@@ -1,14 +1,17 @@
 import { createStore, applyMiddleware } from 'redux';
 import ThunkMiddleware from 'redux-thunk';
-import apiMiddleware from '../middlewares/api';
+import createSagaMiddleware from 'redux-saga';
 import createReducer from '../reducers/RootReducer';
+import rootSaga from '../sagas/RootSaga';
 
-const enhancer = applyMiddleware(ThunkMiddleware, apiMiddleware);
+const sagaMiddleware = createSagaMiddleware();
+const enhancer = applyMiddleware(ThunkMiddleware, sagaMiddleware);
 
 // will cover the initState in reducer
 const initialState = {};
 const store = createStore(createReducer(), initialState, enhancer);
 store.asyncReducers = {};
+sagaMiddleware.run(rootSaga);
 
 export function injectAsyncReducer(asyncReducers) {
   Object.assign(store.asyncReducers, asyncReducers);
