@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/webpack/bin/webpack.js -w --progress --e dev",
-    "start:serv": "webpack-dev-server --content-base -w --progress --e server",
+    "start:serv": "webpack-dev-server -w --progress --e server",
     "build": "NODE_ENV=production ./node_modules/webpack/bin/webpack.js --progress --e prod --bail"
   },
   "repository": {
