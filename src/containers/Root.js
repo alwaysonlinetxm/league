@@ -1,12 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions/CommonActions';
 import './reset.scss';
 
-class Root extends Component {
+class Root extends PureComponent {
   render() {
     const { children, actions, text } = this.props;
+
     return (
       <div>
         { React.cloneElement(children, { ...actions }) }

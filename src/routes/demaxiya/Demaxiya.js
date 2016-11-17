@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PureComponent, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Text from './components/Text';
 import Style from './Demaxiya.scss';
 
-class Demaxiya extends Component {
+class Demaxiya extends PureComponent {
   showText = this.showText.bind(this)
 
   showText() {

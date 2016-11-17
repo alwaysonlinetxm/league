@@ -7,6 +7,5 @@ const initState = Immutable({
 });
 
 export default handleActions({
-  // [ActionTypes.SHOW_TEXT]: (state, action) => Object.assign({}, state, { text: action.payload.text })
   [ActionTypes.SHOW_TEXT]: (state, action) => state.merge({ text: action.payload.text })
 }, initState);
