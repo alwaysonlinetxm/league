@@ -1,4 +1,4 @@
-# league
+# League
 
 一个基于[react](https://facebook.github.io/react/index.html) + [redux](https://github.com/reactjs/redux)的移动端实践。
   
