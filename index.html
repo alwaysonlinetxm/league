@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>League by alwaysonlinetxm</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">League</h1>
+      <h2 class="project-tagline">a practice of react &amp; redux</h2>
+      <a href="https://github.com/alwaysonlinetxm/league" class="btn">View on GitHub</a>
+      <a href="https://github.com/alwaysonlinetxm/league/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/alwaysonlinetxm/league/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="league" class="anchor" href="#league" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>League</h1>
+
+<p>一个基于<a href="https://facebook.github.io/react/index.html">react</a> + <a href="https://github.com/reactjs/redux">redux</a>的移动端实践。</p>
+
+<h2>
+<a id="node-version-" class="anchor" href="#node-version-" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Node version </h2>
+
+<p>node &gt;= 6.2.2</p>
+
+<h2>
+<a id="安装运行" class="anchor" href="#%E5%AE%89%E8%A3%85%E8%BF%90%E8%A1%8C" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>安装运行</h2>
+
+<p>安装：</p>
+
+<pre><code>npm install 
+</code></pre>
+
+<p>开发环境：</p>
+
+<pre><code>npm start 
+</code></pre>
+
+<p>带有webpack-dev-server模式的开发环境：</p>
+
+<pre><code>npm run start:serv
+</code></pre>
+
+<p>正式环境：</p>
+
+<pre><code>npm run build
+</code></pre>
+
+<h2>
+<a id="技术说明" class="anchor" href="#%E6%8A%80%E6%9C%AF%E8%AF%B4%E6%98%8E" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>技术说明</h2>
+
+<p>项目总体以react + redux为基础，其余一些技术细节说明如下。</p>
+
+<h2>
+<a id="router" class="anchor" href="#router" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>router</h2>
+
+<p>使用<a href="https://github.com/ReactTraining/react-router">react-router</a>。并且各个路由页面都采用异步路由(reducer也被异步)。打包时，每个页面都会单独打为一个chunk文件(每个页面单独引入的样式也会被打入各自的chunk文件)。使得在页面首次加载时不会加载过多的内容，提升加载速度。</p>
+
+<h2>
+<a id="state" class="anchor" href="#state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>state</h2>
+
+<p>store中的state采用immutable数据。并没有使用全面而庞大的<a href="https://facebook.github.io/immutable-js/">immutable.js</a>，而是使用了精简的<a href="https://github.com/rtfeldman/seamless-immutable">seamless-immutable</a>。使用seamless-immutable的好处是：</p>
+
+<ol>
+<li>size小，加载快；</li>
+<li>原生接口，上手快；</li>
+<li>原生数据类型，使得redux天然支持，不需要使用<a href="https://github.com/gajus/redux-immutable">redux-immutable</a>之类的辅助工具；</li>
+</ol>
+
+<p>使用seamless-immutable后，所有组件可以都继承自<a href="https://facebook.github.io/react/docs/pure-render-mixin.html">PureComponent</a>(替代Component)。PureComponent实现了shouldComponentUpdate方法，以此可以提高渲染的性能。</p>
+
+<h2>
+<a id="action--reducer" class="anchor" href="#action--reducer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>action &amp; reducer</h2>
+
+<p>使用了<a href="https://github.com/acdlite/redux-actions">redux-actions</a>。redux-actions会以flux的推荐格式来包装数据，并且在reducer中避免了使用switch。</p>
+
+<h2>
+<a id="async" class="anchor" href="#async" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>async</h2>
+
+<p>异步逻辑使用中间件<a href="https://github.com/yelouafi/redux-saga">redux-saga</a>。saga采用声明式指令处理异步逻辑，使用generator实现。具体使用可参考文档：<a href="http://yelouafi.github.io/redux-saga/">http://yelouafi.github.io/redux-saga/</a>.</p>
+
+<h2>
+<a id="selector" class="anchor" href="#selector" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>selector</h2>
+
+<p>可选的selector。使用了<a href="https://github.com/reactjs/reselect">reselect</a>模块。在mapStateToProps方法中使用selector，可以在每次render前避免不必要的state计算，以提高性能。</p>
+
+<h2>
+<a id="css" class="anchor" href="#css" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>css</h2>
+
+<p>使用<a href="https://github.com/css-modules/css-modules">css-module</a>。在webpack.config.js中配置了css-module。多个class的情况使用<a href="https://github.com/JedWatson/classnames">classnames</a>处理。</p>
+
+<h2>
+<a id="flexible" class="anchor" href="#flexible" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>flexible</h2>
+
+<p>使用了手淘的<a href="https://github.com/amfe/lib-flexible">lib-flexible</a>方案来适配各种屏幕下的显示，并使用<a href="https://github.com/songsiqi/px2rem">px2rem</a>来做单位转换。可以根据750的设计稿来实现，直接按设计稿的实际尺寸写px，px2rem会自动按比例转换为rem。</p>
+
+<h2>
+<a id="eslint" class="anchor" href="#eslint" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>eslint</h2>
+
+<p>编码规范使用eslint控制。其他命名规则如下：</p>
+
+<ol>
+<li>文件名、类名首字母大写，eg：Home；</li>
+<li>目录名、变量名采用驼峰式，eg：myHome；</li>
+<li>css类名采用中划线'-'链接，eg：my-home；
+4.常量使用下划线'_'链接，eg：MY_HOME。</li>
+</ol>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/alwaysonlinetxm/league">League</a> is maintained by <a href="https://github.com/alwaysonlinetxm">alwaysonlinetxm</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
