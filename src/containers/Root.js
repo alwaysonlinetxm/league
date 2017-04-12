@@ -1,10 +1,17 @@
-import React, { PureComponent, PropTypes } from 'react';
+// @flow
+import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from '../actions/CommonActions';
 import './reset.scss';
 
-class Root extends PureComponent {
+type Props = {
+  children: Object,
+  actions: Object,
+  text: string
+};
+
+class Root extends PureComponent<void, Props, void> {
   render() {
     const { children, actions, text } = this.props;
 
@@ -17,18 +24,15 @@ class Root extends PureComponent {
   }
 }
 
-Root.propTypes = {
-  text: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
-  children: PropTypes.element
-};
-
 function mapStateToProps(state) {
   return {
     text: state.common.text
   };
 }
+
 function mapDispatchToProps(dispatch) {
     return { actions: bindActionCreators(actions, dispatch) };
 }
+
+// $Unknown
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

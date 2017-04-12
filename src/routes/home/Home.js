@@ -1,19 +1,56 @@
-import React, { PureComponent, PropTypes } from 'react';
+// @flow
+import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import classnames from 'classnames';
 import { getNames } from '../../selectors/HomeSelector';
 import Actions from '../../actions/HomeActions';
-import * as DataTypes from '../../constants/DataTypes';
 import Util from '../../libs/util';
 import Text from './components/Text';
 import Style from './Home.scss';
 
-class Home extends PureComponent {
+type DefaultProps = {
+  list: Array<Object>,
+  total: number,
+  names: Array<string>,
+  text: string,
+};
+
+type Props = {
+  list: Array<Object>,
+  total: number,
+  names: Array<string>,
+  text: string,
+  getMember: () => mixed,
+  sagaTask: () => mixed
+};
+
+type State = {
+  text: string
+};
+
+class Home extends PureComponent<DefaultProps, Props, State> {
+  static defaultProps = {
+    list: [],
+    total: 0,
+    names: [],
+    text: ''
+  }
+
+  state = {
+    text: 'lalala'
+  }
+
+  // will check type by flow
+  test: HTMLParagraphElement
   toDemaxiya = this.toDemaxiya.bind(this)
   sagaTask = this.sagaTask.bind(this)
 
   toDemaxiya() {
+    this.setState({
+      text: 'demaxiya' // will check type by flow
+    });
     this.context.router.push('/demaxiya');
   }
 
@@ -30,12 +67,17 @@ class Home extends PureComponent {
     this.props.getMember();
   }
 
+  // will check type by flow
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    console.log(prevProps, prevState)
+  }
+
   render() {
     const { names, text } = this.props;
 
     return (
       <div className={ Style.home }>
-        <p className={ Style.task } onClick={ this.sagaTask }>saga task</p>
+        <p className={ Style.task } onClick={ this.sagaTask } ref={ref => this.test = ref}>saga task</p>
         <p onClick={ this.toDemaxiya } className={ classnames(Style.border, Style.color) }>Home</p>
         { names.map((node, i) => <p key={ i }>{ node }</p>) }
         <Text text={ text } />
@@ -43,15 +85,6 @@ class Home extends PureComponent {
     );
   }
 }
-
-Home.propTypes = {
-  list: PropTypes.arrayOf(DataTypes.MEMBER).isRequired,
-  total: PropTypes.number.isRequired,
-  names: PropTypes.array.isRequired,
-  text: PropTypes.string.isRequired,
-  getMember: PropTypes.func.isRequired,
-  sagaTask: PropTypes.func.isRequired
-};
 
 Home.contextTypes = {
   router: PropTypes.object,
@@ -71,4 +104,5 @@ function mapDispatchToProps(dispatch) {
     return bindActionCreators(Actions, dispatch);
 }
 
+// $Unknown
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

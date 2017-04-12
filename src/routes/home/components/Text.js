@@ -1,16 +1,7 @@
-import React, { PureComponent, PropTypes } from 'react';
-import './Text.scss';
+// @flow
+import React from 'react';
 
-class Text extends PureComponent {
-  render() {
-    return (
-      <div>{ this.props.text }</div>
-    );
-  }
+// will check type by flow
+export default function Text(props: { text: string }) {
+  return <div>{props.text}</div>
 }
-
-Text.propTypes = {
-  text: PropTypes.string.isRequired
-};
-
-export default Text;

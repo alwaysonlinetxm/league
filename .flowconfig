@@ -1,0 +1,11 @@
+[ignore]
+<PROJECT_ROOT>/node_modules/.*fbjs.*
+
+[include]
+
+[libs]
+
+[options]
+module.name_mapper.extension='css' -> '<PROJECT_ROOT>/flowtype/CSSModule.js.flow'
+module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flowtype/CSSModule.js.flow'
+suppress_comment=\\(.\\|\n\\)*\\$Unknown

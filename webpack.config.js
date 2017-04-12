@@ -60,11 +60,11 @@ if (process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
 	// plugins.push(new webpack.NoErrorsPlugin());
 	// 起服务的方式
 	if (argv.e && argv.e === 'server') {
-		indexEntries.push('webpack-dev-server/client?http://localhost:5000/');
+		indexEntries.push('webpack-dev-server/client?http://localhost:5001/');
 		indexEntries.push('webpack/hot/dev-server');
 		devServer = {
 			contentBase: distPath,
-			port: 5000,
+			port: 5001,
 			inline: true,
 			historyApiFallback: false,
 			colors: true,

@@ -1,12 +1,7 @@
-import React, { PureComponent } from 'react';
-import './Text.scss';
+// @flow
+import React from 'react';
 
-class Text extends PureComponent {
-  render() {
-    return (
-      <div>lalala</div>
-    );
-  }
+// will check type by flow
+export default function Text() {
+  return <div>lalala</div>
 }
-
-export default Text;

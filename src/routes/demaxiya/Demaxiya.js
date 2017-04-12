@@ -1,9 +1,14 @@
-import React, { PureComponent, PropTypes } from 'react';
+// @flow
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Text from './components/Text';
 import Style from './Demaxiya.scss';
 
-class Demaxiya extends PureComponent {
+type Props = {
+  showText: () => mixed
+};
+
+class Demaxiya extends PureComponent<void, Props, void> {
   showText = this.showText.bind(this)
 
   showText() {
@@ -19,9 +24,5 @@ class Demaxiya extends PureComponent {
     );
   }
 }
-
-Demaxiya.propTypes = {
-  showText: PropTypes.func.isRequired
-};
 
 export default connect()(Demaxiya);
